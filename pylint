@@ -1,0 +1,2 @@
+#!/usr/local/bin/bash
+autopep8 *.py --in-place

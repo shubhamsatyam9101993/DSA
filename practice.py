@@ -28,6 +28,7 @@ class LinkedList:
         self.size += 1
         return self
 
+
     def index_add(self, position, value):
         new_node = Node(value)
         temp_node = self.head

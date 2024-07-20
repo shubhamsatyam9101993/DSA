@@ -13,8 +13,8 @@ class TestInvoker(FacadeFixtures):
     @mock.patch("src.invoker.Invoker.write_df")
     @mock.patch("src.invoker.Invoker.read_csv")
     def test_invoker_read_csv(self, mock_read, mock_write):
-        mock_read.side_effect = self.data_set
+        mock_read.return_value = self.data_set
         mock_write.return_value = None
         with (Invoker() as inv):
             inv.do()
-            mock_write.assert_called()
+            mock_write.assert_called_once()

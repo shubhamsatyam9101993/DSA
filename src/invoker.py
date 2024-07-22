@@ -9,10 +9,14 @@ class Invoker:
     def __init__(self):
         self.config_parser = cp.ConfigParser()
         self.config_parser.optionxform = str
-        self.config_parser.read('/Users/shubhamsatyam/Downloads/projects/DSA/project.properties')
-        self._input_path = self.config_parser.get('COMMON_SECTION', 'input_path')
-        self._output_path = self.config_parser.get('COMMON_SECTION', 'output_path')
-        self._timestamp_path = self.config_parser.get('COMMON_SECTION', 'timestamp_path')
+        self.config_parser.read(
+            '/Users/shubhamsatyam/Downloads/projects/DSA/project.properties')
+        self._input_path = self.config_parser.get(
+            'COMMON_SECTION', 'input_path')
+        self._output_path = self.config_parser.get(
+            'COMMON_SECTION', 'output_path')
+        self._timestamp_path = self.config_parser.get(
+            'COMMON_SECTION', 'timestamp_path')
         self._spark = None
 
     def __enter__(self):
@@ -28,7 +32,8 @@ class Invoker:
         return df
 
     def write_df(self, df: DataFrame) -> None:
-        df.repartition(1).write.format("csv").mode('overwrite').save(self._output_path)
+        df.repartition(1).write.format("csv").mode(
+            'overwrite').save(self._output_path)
         self.write_current_timestamp()
 
     def do(self) -> None:
@@ -41,7 +46,8 @@ class Invoker:
     def write_current_timestamp(self) -> None:
         timestamp = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         df = self._spark.createDataFrame([(timestamp,)], ["timestamp"])
-        df.repartition(1).write.format("csv").mode('overwrite').save(self._timestamp_path)
+        df.repartition(1).write.format("csv").mode(
+            'overwrite').save(self._timestamp_path)
 
 
 if __name__ == '__main__':

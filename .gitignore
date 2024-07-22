@@ -1,3 +1,5 @@
 .idea/misc.xml
 .idea/csv-editor.xml
 .idea/vcs.xml
+__pycache__/
+tests/__pycache__/

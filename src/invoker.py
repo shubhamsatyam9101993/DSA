@@ -24,7 +24,7 @@ class Invoker:
     def write_df(self, df: DataFrame) -> None:
         df.repartition(1).write.format("csv").save(self.path.split("hello.csv")[0]+"op")
 
-    def do(self) -> None:
+    def do(self) ->None:
         df = self.read_csv()
         self.write_df(df)
 

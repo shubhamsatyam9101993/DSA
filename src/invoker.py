@@ -36,7 +36,7 @@ class Invoker:
             'overwrite').save(self._output_path)
         self.write_current_timestamp()
 
-    def do(self) -> None:
+    def do(self) ->None:
         df = self.read_csv()
         self.write_df(df)
 
